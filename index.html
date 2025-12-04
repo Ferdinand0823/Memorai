@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoRai - AI untuk Memori dan Produktivitas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a192f 0%, #1e3a5f 50%, #2a3d5f 100%);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPHN0eWxlPi5zaWxob3VldHRlIHtmaWxsOiByZ2JhKDI1NSwgMjE1LCAwLCAwLjA1KTt9Cjwvc3R5bGU+CjwvZGVmcz4KPHA+PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDIwQzIyLjIwOTEgMjAgMjQgMTguMjA5MSAyNCAxNkMyNCAxMy43OTA5IDIyLjIwOTEgMTIgMjAgMTJDMTcuNzkwOSAxMiAxNiAxMy43OTA5IDE2IDE2QzE2IDE4LjIwOTEgMTcuNzkwOSAyMCAyMCAyMFoiIGZpbGw9InJnYmEoMjU1LCAyMTUsIDAsIDAuMDUpIi8+Cjwvc3ZnPjwvcD4KPC9zdmc+') no-repeat center center;
+            background-size: 200px 200px;
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 10s ease-in-out infinite;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #ffd700 !important;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .hero {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 150px 0;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 2s ease-in;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            color: #fff;
+        }
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            color: #e0e0e0;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            color: #e0e0e0;
+        }
+        .btn-custom {
+            background: linear-gradient(45deg, #1e3a5f, #ffd700);
+            border: 2px solid #ffd700;
+            padding: 15px 40px;
+            border-radius: 35px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+        }
+        .btn-custom:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(45deg, #ffd700, #1e3a5f);
+        }
+        .features {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.4);
+            border-color: rgba(255, 215, 0, 0.6);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        .testimonial {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+        }
+        .testimonial-card {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid #ffd700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        .blockquote {
+            font-style: italic;
+            border-left: 5px solid #ffd700;
+            padding-left: 25px;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .testimonial-name {
+            font-weight: 600;
+            color: #e0e0e0;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            color: #e0e0e0;
+        }
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffd700;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="MemoRai Logo">
+                MemoRai
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#features">Fitur</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonial">Testimoni</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Selamat Datang di MemoRai</h1>
+            <h2>Platform Wasiat Digital yang Aman dan Terpercaya</h2>
+            <p>Menyiapkan dengan tenang, meninggalkan dengan damai.</p>
+            <a href="https://play.google.com/store/apps?hl=id" class="btn-custom" target="_blank">Mulai Sekarang</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-weight: 600; color: #ffd700;">Fitur Utama</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4 style="font-weight: 600; color: #fff;">Wasiat Digital & Safe Deposit Box</h4>
+                        <p style="color: #e0e0e0;">Solusi legal & aman untuk menyimpan wasiat dan dokumen penting. Teknologi enkripsi tingkat tinggi memastikan dokumen tetap terlindungi dan dapat diakses hanya oleh pihak yang berhak.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h4 style="font-weight: 600; color: #fff;">Protokol Darurat (Incapacitation Protocol)</h4>
+                        <p style="color: #e0e0e0;">Akses otomatis saat pemilik koma atau tidak mampu. Ahli waris dapat mengakses dokumen darurat yang telah diizinkan, sehingga keputusan penting bisa dilakukan tepat waktu.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-book-open"></i></div>
+                        <h4 style="font-weight: 600; color: #fff;">Legacy & Heir Playbook</h4>
+                        <p style="color: #e0e0e0;">Panduan lengkap untuk ahli waris setelah pemilik meninggal. Berisi pesan pribadi, instruksi langkah demi langkah (Heir Checklist), dan panduan dokumen, agar ahli waris tidak kebingungan menghadapi proses legal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section id="testimonial" class="testimonial">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-weight: 600; color: #ffd700;">Apa Kata Pengguna</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <img src="https://picsum.photos/80/80?random=1" alt="Dimas W." class="testimonial-avatar">
+                        <blockquote class="blockquote">
+                            <p style="color: #fff;">“MemoRai benar-benar bikin saya tenang. Semua dokumen penting dan wasiat saya tersimpan aman, dan ahli waris sudah saya atur dengan jelas.”</p>
+                        </blockquote>
+                        <div class="testimonial-name">Dimas W., Profesional</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <img src="https://picsum.photos/80/80?random=2" alt="Alyssa R." class="testimonial-avatar">
+                        <blockquote class="blockquote">
+                            <p style="color: #fff;">“Saat ayah saya dirawat karena kondisi kritis, fitur Protokol Darurat membantu kami akses dokumen penting tanpa ribet. Sangat membantu!”</p>
+                        </blockquote>
+                        <div class="testimonial-name">Alyssa R., Ahli Waris</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <img src="https://picsum.photos/80/80?random=3" alt="G. Pratama" class="testimonial-avatar">
+                        <blockquote class="blockquote">
+                            <p style="color: #fff;">“Proses legalisasi wasiat jauh lebih cepat dan transparan. Jejak auditnya jelas, dan semua verifikasi jadi lebih rapi.”</p>
+                        </blockquote>
+                        <div class="testimonial-name">G. Pratama, Notaris</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <h3 style="color: #ffd700; margin-bottom: 20px;">Hubungi Kami</h3>
+            <p>&copy; 2023 MemoRai. Semua hak dilindungi.</p>
+            <p>Email: <a href="mailto:info@memorai.com">info@memorai.com</a> | Telepon: +62 123 456 789</p>
+            <p>Ikuti kami di: <a href="#" target="_blank"><i class="fab fa-facebook"></i></a> <a href="#" target="_blank"><i class="fab fa-twitter"></i></a> <a href="#" target="_blank"><i class="fab fa-instagram"></i></a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
